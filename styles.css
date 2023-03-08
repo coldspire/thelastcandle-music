@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
 @import url("reset.min.css");
 
 :root {
-  --font-size: 16pt;
+  --font-size: 20pt;
 
   --spacing-xs: calc(var(--font-size) * 0.5);
   --spacing-sm: calc(var(--font-size));
@@ -24,28 +26,37 @@
           -0.4px 76px 92.9px -1.8px hsl(var(--shadow-color) / 0.73);
 }
 
+html {
+  font: var(--font-size)/1.25 sans-serif;
+}
+
 .flow > * + * {
   margin-block-start: var(--flow-space, var(--spacing-sm));
 }
 
-.page-wrapper {
-  padding-block-start: var(--spacing-lg);
-  padding-inline: var(--spacing-lg);
+:is(h1, h2, h3, h4, h5, h6) {
+  font-family: 'DM Serif Display', serif;
+}
 
+body {
   background-color: #CCC;
   color: #333;
 }
 
 @media (prefers-color-scheme: dark) {
-  .page-wrapper {
+  body {
     background-color: #333;
     color: #DDD;
   }
 }
 
-main {
-  max-width: calc(var(--playlist-width) + 300px);
+.page-wrapper {
+  padding-block-start: var(--spacing-lg);
+  padding-inline: var(--spacing-lg);
+  max-width: calc(var(--playlist-width) + 500px);
+}
 
+main {
   --flow-space: var(--spacing-md);
 }
 
