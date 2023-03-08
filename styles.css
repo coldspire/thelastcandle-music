@@ -1,2 +1,23 @@
 @import url("reset.min.css");
 
+main {
+  max-width: 75vw;
+}
+
+.playlist {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.playlist + .playlist {
+  margin-top: 150px;
+}
+
+.playlist > h2 {
+  font-size: 36pt;
+
+  flex-basis: 250px;
+  text-align: center;
+}
+
