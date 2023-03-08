@@ -1,23 +1,44 @@
 @import url("reset.min.css");
 
+:root {
+  --font-size: 16pt;
+
+  --spacing-xs: calc(var(--font-size) * 0.5);
+  --spacing-sm: calc(var(--font-size));
+  --spacing-md: calc(var(--font-size) * 1.5);
+  --spacing-lg: calc(var(--font-size) * 2);
+  --spacing-xl: calc(var(--font-size) * 4);
+
+  --playlist-width: 660px;
+}
+
+.flow > * + * {
+  margin-block-start: var(--flow-space, var(--spacing-sm));
+}
+
+body {
+  padding-block-start: var(--spacing-lg);
+  padding-inline: var(--spacing-lg);
+}
+
 main {
-  max-width: 75vw;
+  max-width: calc(var(--playlist-width) + 300px);
+
+  --flow-space: var(--spacing-md);
 }
 
 .playlist {
+
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .playlist + .playlist {
-  margin-top: 150px;
+  margin-block-start: var(--spacing-xl);
 }
 
 .playlist > h2 {
-  font-size: 36pt;
-
-  flex-basis: 250px;
   text-align: center;
 }
 
