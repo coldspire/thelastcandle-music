@@ -10,6 +10,18 @@
   --spacing-xl: calc(var(--font-size) * 4);
 
   --playlist-width: 660px;
+
+  --shadow-color: 0deg 0% 56%;
+  --shadow-elevation-low:
+          0px 1px 1.2px hsl(var(--shadow-color) / 0.29),
+          0px 3.5px 4.3px -1.8px hsl(var(--shadow-color) / 0.39);
+  --shadow-elevation-medium:
+          0px 1px 1.2px hsl(var(--shadow-color) / 0.4),
+          -0.1px 17.6px 21.5px -1.8px hsl(var(--shadow-color) / 0.54);
+  --shadow-elevation-high:
+          0px 1px 1.2px hsl(var(--shadow-color) / 0.5),
+          -0.1px 19.2px 23.5px -0.9px hsl(var(--shadow-color) / 0.61),
+          -0.4px 76px 92.9px -1.8px hsl(var(--shadow-color) / 0.73);
 }
 
 .flow > * + * {
@@ -28,17 +40,19 @@ main {
 }
 
 .playlist {
-
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: var(--spacing-xs);
 }
 
 .playlist + .playlist {
   margin-block-start: var(--spacing-xl);
 }
 
-.playlist > h2 {
-  text-align: center;
+.apple-music-iframe {
+  border: 0;
+  border-radius: 20px; /* The radius of the Apple Music container plus a bit more */
+  box-shadow: var( --shadow-elevation-high);
 }
 
