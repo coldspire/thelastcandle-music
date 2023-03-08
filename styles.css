@@ -28,9 +28,19 @@
   margin-block-start: var(--flow-space, var(--spacing-sm));
 }
 
-body {
+.page-wrapper {
   padding-block-start: var(--spacing-lg);
   padding-inline: var(--spacing-lg);
+
+  background-color: #CCC;
+  color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page-wrapper {
+    background-color: #333;
+    color: #DDD;
+  }
 }
 
 main {
