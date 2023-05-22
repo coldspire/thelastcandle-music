@@ -53,13 +53,4 @@ async function getSongsFromEmbedUrl(url) {
   return songs;
 }
 
-(async () => {
-  const urlFavorites2023 = `https://embed.music.apple.com/us/playlist/2023-absolute-favorites/pl.u-9N9L24eFADqk5`;
-  const urlGoodListening2023 = `https://embed.music.apple.com/us/playlist/2023-good-listenin/pl.u-DdAN8EosKAZ8R`;
-
-  const favoriteSongs = await getSongsFromEmbedUrl(urlFavorites2023);
-  console.log(favoriteSongs);
-
-  const goodSongs = await getSongsFromEmbedUrl(urlGoodListening2023);
-  console.log(goodSongs);
-})();
+module.exports = getSongsFromEmbedUrl;
