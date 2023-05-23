@@ -2,4 +2,16 @@
 layout: baseLayout
 ---
 
-TODO: everything
+<h3>2023 Favorites</h3>
+<ul>
+  {% for songPair in applemusic.2023favorites %}
+  <li>{{ songPair.song }} by {{ songPair.artist }}</li>
+  {% endfor %}
+</ul>
+
+<h3>2023 Goods</h3>
+<ul>
+  {% for songPair in applemusic.2023goods %}
+  <li>{{ songPair.song }} by {{ songPair.artist }}</li>
+  {% endfor %}
+</ul>
