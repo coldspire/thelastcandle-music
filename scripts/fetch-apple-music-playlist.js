@@ -1,7 +1,7 @@
-const puppeteer = require("puppeteer");
+const { chromium } = require("playwright");
 
 /**
- * @typedef {song: string, artist: string} Song
+ * @typedef { {song: string, artist: string} } Song
  */
 
 /**
@@ -14,7 +14,13 @@ function createSongDataFromPlaylistItem(playlistItem) {
     return null;
   }
 
-  const [song, artist] = playlistItem.split("\n");
+  const tokens = playlistItem.split("\n");
+  if (tokens.length === 3) {
+    // Remove the "Explicit Content" token at index 1
+    tokens.slice(1, 1);
+  }
+  const [song, artist] = tokens;
+
   return {
     artist,
     song,
@@ -24,29 +30,21 @@ function createSongDataFromPlaylistItem(playlistItem) {
 /**
  * Returns an array of Song object after fetching and parsing an Apple Music embed playlist.
  * @param {string} url - A URL to an Apple Music embed playlist
- * @return {Promise<Awaited<Song>[]|null>}
  */
 async function getSongsFromEmbedUrl(url) {
   if (!url) {
     return null;
   }
 
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await chromium.launch();
   const page = await browser.newPage();
 
   await page.goto(url);
 
-  const element = await page.waitForSelector(`main >>> embed-audio-tracklist`);
-  const itemElements = await element.$$(
-    "embed-audio-tracklist > embed-audio-tracklist-item"
+  const playlistItems = await page.getByRole("listitem").allInnerTexts();
+  const songs = playlistItems.map((songItem) =>
+    createSongDataFromPlaylistItem(songItem)
   );
-
-  const songsToResolve = itemElements.map(async (item) => {
-    const text = await item.evaluate((el) => el.innerText);
-    return createSongDataFromPlaylistItem(text);
-  });
-
-  const songs = await Promise.all(songsToResolve);
 
   await browser?.close();
 
