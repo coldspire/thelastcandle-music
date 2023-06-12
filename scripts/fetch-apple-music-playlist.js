@@ -40,6 +40,8 @@ async function getSongsFromEmbedUrl(url) {
   const page = await browser.newPage();
 
   await page.goto(url);
+  const headingText = page.getByText("Play", { exact: true });
+  await headingText.waitFor();
 
   const playlistItems = await page.getByRole("listitem").allInnerTexts();
   const songs = playlistItems.map((songItem) =>
