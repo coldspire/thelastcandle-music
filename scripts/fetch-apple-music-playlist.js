@@ -30,6 +30,7 @@ function createSongDataFromPlaylistItem(playlistItem) {
 /**
  * Returns an array of Song object after fetching and parsing an Apple Music embed playlist.
  * @param {string} url - A URL to an Apple Music embed playlist
+ * @return {Promise<({song: string, artist: string}|null)[]|null>}
  */
 async function getSongsFromEmbedUrl(url) {
   if (!url) {
