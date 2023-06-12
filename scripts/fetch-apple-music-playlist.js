@@ -17,7 +17,7 @@ function createSongDataFromPlaylistItem(playlistItem) {
   const tokens = playlistItem.split("\n");
   if (tokens.length === 3) {
     // Remove the "Explicit Content" token at index 1
-    tokens.slice(1, 1);
+    tokens.splice(1, 1);
   }
   const [song, artist] = tokens;
 
